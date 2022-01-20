@@ -1,8 +1,7 @@
-import 'dart:io';
-import 'package:git_hooks/git_hooks.dart';
+import "package:git_hooks/git_hooks.dart";
+import "dart:io";
 
-void main(List<String> arguments) {
-  // ignore: omit_local_variable_types
+void main(List arguments) {
   Map<Git, UserBackFun> params = {
     Git.commitMsg: commitMsg,
     Git.preCommit: preCommit
@@ -13,12 +12,10 @@ void main(List<String> arguments) {
 Future<bool> commitMsg() async {
   String rootDir = Directory.current.path;
   String commitMsg = Utils.getCommitEditMsg();
-  print(rootDir);
   if (commitMsg.startsWith('fix:')) {
-    return true;
-  } else {
+    return true; // you can return true let commit go
+  } else
     return false;
-  }
 }
 
 Future<bool> preCommit() async {
