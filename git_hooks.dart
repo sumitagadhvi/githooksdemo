@@ -5,16 +5,9 @@ import "package:git_hooks/git_hooks.dart";
 
 void main(List<String> arguments) {
   final params = {
-    Git.preCommit: _preCommit,
     Git.commitMsg:commitMsg,
   };
   GitHooks.call(arguments, params);
-}
-
-Future<bool> _preCommit() async {
- var hooks = await Hooks.create();  // adjust behaviour if neccessary
-  final result = await hooks();  // run activated hooks on staged files
-  return result.isSuccess;  // report the result
 }
 Future<bool> commitMsg() async {
   var commitMsg = Utils.getCommitEditMsg();
