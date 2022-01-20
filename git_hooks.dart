@@ -15,3 +15,12 @@ Future<bool> _preCommit() async {
   final result = await hooks();  // run activated hooks on staged files
   return result.isSuccess;  // report the result
 }
+Future<bool> commitMsg() async {
+  var commitMsg = Utils.getCommitEditMsg();
+  if (commitMsg.startsWith('fix:')) {
+    return true; // you can return true let commit go
+  } else  {
+    print('you should add `fix` in the commit message');
+    return false;
+  }
+}
