@@ -5,7 +5,8 @@ import "package:git_hooks/git_hooks.dart";
 
 void main(List<String> arguments) {
   final params = {
-    Git.preCommit: _preCommit
+    Git.preCommit: _preCommit,
+    Git.commitMsg:commitMsg,
   };
   GitHooks.call(arguments, params);
 }
