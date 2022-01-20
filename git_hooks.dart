@@ -14,7 +14,7 @@ void main(List<String> arguments) {
 Future<bool> commitMsg() async {
   var commitMsg = Utils.getCommitEditMsg();
   if (commitMsg.startsWith('fix:')) {
-    return true; // you can return true let commit go
+    return false; // you can return true let commit go
   } else  {
     print('you should add `fix` in the commit message before commit');
     return false;
