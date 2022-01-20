@@ -13,12 +13,12 @@ void main(List<String> arguments) {
 Future<bool> commitMsg() async {
   String rootDir = Directory.current.path;
   String commitMsg = Utils.getCommitEditMsg();
+  print(rootDir);
   if (commitMsg.startsWith('fix:')) {
-    return true; // you can return true let commit go
+    return true;
   } else {
     return false;
   }
-  return true;
 }
 
 Future<bool> preCommit() async {
