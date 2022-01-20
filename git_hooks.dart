@@ -11,11 +11,6 @@ void main(List<String> arguments) {
   GitHooks.call(arguments, params);
 }
 
-Future<bool> _preCommit() async {
- var hooks = await Hooks.create();  // adjust behaviour if neccessary
-  final result = await hooks();  // run activated hooks on staged files
-  return result.isSuccess;  // report the result
-}
 Future<bool> commitMsg() async {
   var commitMsg = Utils.getCommitEditMsg();
   if (commitMsg.startsWith('fix:')) {
@@ -24,4 +19,9 @@ Future<bool> commitMsg() async {
     print('you should add `fix` in the commit message before commit');
     return false;
   }
+}
+Future<bool> _preCommit() async {
+ var hooks = await Hooks.create();  // adjust behaviour if neccessary
+  final result = await hooks();  // run activated hooks on staged files
+  return result.isSuccess;  // report the result
 }
