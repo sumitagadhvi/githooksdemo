@@ -1,30 +1,17 @@
-import "package:git_hooks/git_hooks.dart";
 import "dart:io";
 
+import "package:dart_pre_commit/dart_pre_commit.dart";
+import "package:git_hooks/git_hooks.dart";
+
 void main(List<String> arguments) {
-  Map<Git, UserBackFun> params = {
-    Git.commitMsg: commitMsg,
-    Git.preCommit: preCommit
+  final params = {
+    Git.preCommit: _preCommit
   };
   GitHooks.call(arguments, params);
 }
 
-Future<bool> commitMsg() async {
-  String rootDir = Directory.current.path;
-  String commitMsg = Utils.getCommitEditMsg();
-  if (commitMsg.startsWith('fix:')) {
-    return true; // you can return true let commit go
-  } else
-    return false;
-}
-
-Future<bool> preCommit() async {
-  try {
-    ProcessResult result = await Process.run('dartanalyzer', ['bin']);
-    print(result.stdout);
-    if (result.exitCode != 0) return false;
-  } catch (e) {
-    return false;
-  }
-  return true;
+Future<bool> _preCommit() async {
+ var hooks = await Hooks.create();  // adjust behaviour if neccessary
+  final result = await hooks();  // run activated hooks on staged files
+  return result.isSuccess;  // report the result
 }
