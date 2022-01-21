@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/demogithooks.iml" filepath="$PROJECT_DIR$/demogithooks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logindemowithtest.iml" filepath="$PROJECT_DIR$/logindemowithtest.iml" />
     </modules>
   </component>
 </project>
